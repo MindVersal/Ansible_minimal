@@ -1,0 +1,20 @@
+---
+
+# CentOS
+- name: Include vars for install tools CentOS
+  include_vars: install_tools_yum.yml
+  when: ansible_distribution == 'CentOS'
+
+- name: Install tools CentOS
+  include_tasks: install_tools_yum.yml
+  when: ansible_distribution == 'CentOS'
+
+# Debian
+- name: Include vars for install tools Debian
+  include_vars: install_tools_apt.yml
+  when: ansible_distribution == 'Debian'
+
+- name: Install tools Debian
+  include_tasks: install_tools_apt.yml
+  when: ansible_distribution == 'Debian'
+

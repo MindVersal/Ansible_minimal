@@ -1,0 +1,25 @@
+---
+
+tools_packages:
+  - name: vim
+  - name: mc
+  - name: less
+  - name: iotop
+  - name: strace
+  - name: traceroute
+  - name: tmux
+  - name: curl
+  - name: wget
+  - name: zlib
+  - name: unzip
+  - name: bind-utils
+  - name: ntp
+  - name: ntpdate
+  - name: telnet
+  - name: nmap
+  - name: tcpdump
+  - name: bash-competition
+  - name: net-tools
+  - name: yum-utils
+  - name: mtr
+

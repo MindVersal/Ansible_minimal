@@ -1,0 +1,8 @@
+---
+
+- name: install tools
+  yum:
+    name: '{{ item.name  }}'
+    state: present
+    update_cache: yes
+  with_items: '{{ tools_packages }}'

@@ -1,0 +1,20 @@
+---
+
+tools_packages:
+  - name: vim
+  - name: mc
+  - name: less
+  - name: iotop
+  - name: strace
+  - name: traceroute
+  - name: tmux
+  - name: curl
+  - name: wget
+  - name: unzip
+  - name: ntp
+  - name: nmap
+  - name: tcpdump
+  - name: net-tools
+  - name: telnet
+  - name: build-essential
+  - name: python-selinux

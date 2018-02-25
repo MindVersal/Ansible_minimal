@@ -1,0 +1,6 @@
+---
+
+- name: disable SELinux
+  selinux:
+    state: disabled
+  when: ansible_distribution == 'CentOS'

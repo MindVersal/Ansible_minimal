@@ -1,0 +1,9 @@
+---
+
+- name: Update Centos
+  include_tasks: update_system_yum.yml
+  when: (ansible_distribution == 'CentOS')
+
+- name: Update Debian
+  include_tasks: update_system_apt.yml
+  when: (ansible_distribution == 'Debian')
