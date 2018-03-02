@@ -1,25 +1,36 @@
 ---
 
 tools_packages:
-  - name: vim
-  - name: mc
-  - name: less
-  - name: iotop
-  - name: strace
-  - name: traceroute
-  - name: tmux
-  - name: curl
-  - name: wget
-  - name: zlib
-  - name: unzip
+  - name: atop
+  - name: bash-completion
   - name: bind-utils
+  - name: curl
+  - name: htop
+  - name: iotop
+  - name: iftop
+  - name: less
+  - name: logrotate
+  - name: lsof
+  - name: mc
+  - name: mtr
+  - name: net-tools
+  - name: nmap
   - name: ntp
   - name: ntpdate
-  - name: telnet
-  - name: nmap
+  - name: python
+  - name: rsync
+  - name: screen
+  - name: strace
+  - name: sysstat
   - name: tcpdump
-  - name: bash-competition
-  - name: net-tools
+  - name: telnet
+  - name: tmux
+  - name: traceroute
+  - name: unzip
+  - name: vim
+  - name: wget
+  - name: yum-cron
   - name: yum-utils
-  - name: mtr
+  - name: zip
+  - name: zlib
 

@@ -1,0 +1,37 @@
+---
+
+- name: Add iptables modules
+  lineinfile:
+    dest: /etc/sysconfig/iptables-config
+    regexp: '^IPTABLES_MODULES='
+    insertbefore: BOF
+    line: 'IPTABLES_MODULES="ip_nat_ftp ip_nat_irc"'
+
+- name: Off unload iptables modules
+  lineinfile:
+    dest: /etc/sysconfig/iptables-config
+    regexp: '^IPTABLES_MODULES_UNLOAD'
+    insertbefore: BOF
+    line: 'IPTABLES_MODULES_UNLOAD="no"'
+
+- name: Add iptables_rules LAN to WAN Accept
+  lineinfile:
+    dest: /etc/iptables_rules.sh
+    regexp: '\$IPT -A FORWARD -i \$LAN -o \$WAN -j ACCEPT'
+    insertbefore: BOF
+    line: '$IPT -A FORWARD -i $LAN -o $WAN -j ACCEPT'
+
+- name: Add iptables_rules WAN to LAN Reject
+  lineinfile:
+    dest: /etc/iptables_rules.sh
+    regexp: '\$IPT -A FORWARD -i \$WAN -o \$LAN -j REJECT'
+    insertbefore: BOF
+    line: '$IPT -A FORWARD -i $WAN -o $LAN -j REJECT'
+
+- name: Add iptables_rules Masquerade
+  lineinfile:
+    dest: /etc/iptables_rules.sh
+    regexp: '\$IPT -t nat -A POSTROUTING -o \$WAN -s \$LAN_IP_RANGE -j MASQUERADE'
+    insertbefore: BOF
+    line: '$IPT -t nat -A POSTROUTING -o $WAN -s $LAN_IP_RANGE -j MASQUERADE'
+

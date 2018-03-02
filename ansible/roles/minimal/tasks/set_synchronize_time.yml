@@ -1,0 +1,7 @@
+---
+
+- name: Set synchronize time in cron
+  cron:
+    name: "set synchronize time by ansible"
+    minute: 5
+    job: "/usr/sbin/ntpdate -u pool.ntp.org >/dev/null 2>&1"

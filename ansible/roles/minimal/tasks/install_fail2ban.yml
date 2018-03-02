@@ -1,0 +1,42 @@
+---
+
+- name: Install fail2ban
+  yum:
+    name: fail2ban
+    state: latest
+
+- name: MakeDir for socks
+  file:
+    path: /var/run/fail2ban
+    state: directory
+    mode: 0755
+
+- name: Import vars for CentOS 6
+  include_vars: install_fail2ban_centos_6.yml
+  when: (ansible_distribution == 'CentOS')
+    and (ansible_distribution_major_version == '6')
+
+- name: Configure fail2ban
+  template:
+    src: "{{ item }}.j2"
+    dest: "/etc/fail2ban/{{ item }}"
+  with_items:
+    - jail.local
+    - fail2ban.local
+
+- name: Start service fail2ban on Centos 6
+  service:
+    name: fail2ban
+    state: started
+    enabled: yes
+  when: (ansible_distribution == 'CentOS')
+    and (ansible_distribution_major_version == '6')
+
+- name: Start service fail2ban on Centos 7
+  sysctl:
+    name: fail2ban
+    state: started
+    enabled: yes
+  when: (ansible_distribution == 'CentOS')
+    and (ansible_distribution_major_version == '7')
+

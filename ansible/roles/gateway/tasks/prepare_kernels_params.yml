@@ -1,0 +1,10 @@
+---
+
+- name: Add params to sysctl.conf
+  sysctl:
+    name: "{{ item.key }}"
+    value: "{{ item.value }}"
+    sysctl_set: yes
+    state: present
+  with_dict:
+    "{{ sysctl_params }}"

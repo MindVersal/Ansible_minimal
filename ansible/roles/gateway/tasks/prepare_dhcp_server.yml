@@ -1,0 +1,30 @@
+---
+
+- name: Install DHCP server
+  yum:
+    name: dhcp
+    state: latest
+
+- name: Configure DHCP conf
+  template:
+    src: "{{ item }}.j2"
+    dest: "/{{ item }}"
+  with_items:
+    - etc/dhcp/dhcpd.conf
+
+- name: Start DHCP server
+  service:
+    name: dhcpd
+    state: started
+    enabled: true
+
+- name: Configure iptables_rules for DHCP
+  lineinfile:
+    path: /etc/iptables_rules.sh
+    regexp: '^\$IPT -A INPUT -i \$LAN -p udp --dport 67 -j ACCEPT'
+    insertbefore: '^# END_MY_RULES'
+    line: "# Открываем порт для DHCP сервера\n$IPT -A INPUT -i $LAN -p udp --dport 67 -j ACCEPT"
+
+- name: Restart iptables_rules
+  shell: /etc/iptables_rules.sh
+

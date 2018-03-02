@@ -1,0 +1,12 @@
+---
+
+- name: Install iptables Centos 6
+  include_tasks: enable_iptables_centos_6.yml
+  when: (ansible_distribution == 'CentOS')
+    and (ansible_distribution_major_version == '6')
+
+- name: Install iptables CentOS 7
+  include_tasks: enable_iptables_centos_7.yml
+  when: (ansible_distribution == 'CentOS')
+    and (ansible_distribution_major_version == '7')
+

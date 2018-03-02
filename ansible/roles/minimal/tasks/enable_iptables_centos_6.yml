@@ -1,0 +1,28 @@
+---
+
+- name: Copy iptables_rules.sh
+  template:
+    src: iptables_rules.sh.j2
+    dest: /etc/iptables_rules.sh
+    owner: root
+    group: root
+    mode: 0740
+
+- name: Copy ifup-local
+  template:
+    src: ifup-local.j2
+    dest: /sbin/ifup-local
+    owner: root
+    group: root
+    mode: 0740
+
+- name: Copy ifup-scripts
+  template:
+    src: ifup-scripts.j2
+    dest: /etc/sysconfig/network-scripts/ifup-scripts
+    owner: root
+    group: root
+    mode: 0740
+
+- name: Activate iptables rules
+  shell: /etc/iptables_rules.sh

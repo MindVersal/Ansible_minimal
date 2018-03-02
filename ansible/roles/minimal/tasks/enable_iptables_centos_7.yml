@@ -1,0 +1,51 @@
+---
+
+- name: Disable Firewalld
+  systemd:
+    name: firewalld
+    state: stopped
+    enabled: no
+
+- name: Disable Network Manager
+  systemd:
+    name: NetworkManager
+    state: stopped
+    enabled: no
+
+- name: Install Iptables
+  yum:
+    name: iptables-services
+    state: latest
+
+- name: Enable Iptables Systemd
+  systemd:
+    name: iptables
+    state: started
+    enaabled: yes
+
+- name: Copy iptables_rules.sh
+  template:
+    src: iptables_rules.sh.j2
+    dest: /etc/iptable_rules.sh
+    owner: root
+    group: root
+    mode: 0740
+
+- name: Copy ifup-local
+  template:
+    src: ifup-local.j2
+    dest: /sbin/ifup-local
+    owner: root
+    group: root
+    mode: 0740
+
+- name: Copy ifup-scripts
+  template:
+    src: ifup-scripts
+    dest: /etc/sysconfig/network-scripts/ifup-scripts
+    owner: root
+    group: root
+    mode: 0740
+
+- name: Activate iptables rules
+  shell: /etc/iptables_rules.sh
