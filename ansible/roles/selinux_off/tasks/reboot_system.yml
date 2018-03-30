@@ -1,0 +1,12 @@
+---
+
+- name: Reboot now
+  shell: nohup bash -c "sleep 2s && reboot" &
+
+- name: Wait for reboot
+  local_action: wait_for
+  args:
+    host: "{{ ansible_default_ipv4.address }}"
+    port: 22
+    delay: 15
+    timeout: 30

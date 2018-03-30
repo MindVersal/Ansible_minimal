@@ -6,3 +6,9 @@
     state: present
     update_cache: yes
   with_items: '{{ tools_packages }}'
+
+- name: Start yum-cron updates
+  service:
+    name: yum-cron
+    state: started
+    enabled: yes

@@ -1,0 +1,13 @@
+---
+
+- name: Step 01. Install repo for Spacewalk
+  include_tasks: install_repo_for_spacewalk.yml
+
+- name: Step 02. Prepare answer file
+  include_tasks: prepare_answer_file.yml
+
+- name: Step 03. Install spacewalk
+  include_tasks: install_spacewalk.yml
+
+- name: Step 04. Configure Firewalld
+  include_tasks: configure_firewalld.yml

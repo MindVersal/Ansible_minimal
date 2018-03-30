@@ -1,0 +1,8 @@
+---
+
+- hosts: spacewalk
+  become: true
+  roles:
+    - minimal
+    - selinux_off
+    - spacewalk

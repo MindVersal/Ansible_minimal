@@ -21,12 +21,12 @@
   systemd:
     name: iptables
     state: started
-    enaabled: yes
+    enabled: yes
 
 - name: Copy iptables_rules.sh
   template:
     src: iptables_rules.sh.j2
-    dest: /etc/iptable_rules.sh
+    dest: /etc/iptables_rules.sh
     owner: root
     group: root
     mode: 0740
@@ -41,7 +41,7 @@
 
 - name: Copy ifup-scripts
   template:
-    src: ifup-scripts
+    src: ifup-scripts.j2
     dest: /etc/sysconfig/network-scripts/ifup-scripts
     owner: root
     group: root

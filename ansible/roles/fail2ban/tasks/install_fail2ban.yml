@@ -33,7 +33,7 @@
     and (ansible_distribution_major_version == '6')
 
 - name: Start service fail2ban on Centos 7
-  sysctl:
+  systemd:
     name: fail2ban
     state: started
     enabled: yes

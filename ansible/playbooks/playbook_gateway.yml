@@ -4,4 +4,6 @@
   become: true
   roles:
     - minimal
+    - iptables
+    - fail2ban
     - gateway

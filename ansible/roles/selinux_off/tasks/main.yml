@@ -1,0 +1,7 @@
+---
+
+- name: Step 01. Disable SELinux
+  include_tasks: disable_selinux.yml
+
+- name: Step 02. Reboot system
+  include_tasks: reboot_system.yml

@@ -1,0 +1,33 @@
+---
+
+- name: Include VARS
+  include_vars: passwords.yml
+
+- name: create ansible user
+  user:
+    name: ansible
+    shell: /bin/bash
+    home: /home/ansible
+    password: "{{ ANSIBLE_SSH_PASS }}"
+    update_password: always
+
+
+- name: prepare OS for ssh-copy
+  yum:
+    name: libselinux-python
+    state: latest
+  when: ansible_os_family == 'RedHat'
+
+- name: copy ssh pubkey to home directory
+  authorized_key:
+    user: ansible
+    state: present
+    key: "{{ lookup('file', '/etc/ansible/pub_keys/ansible_pubkey') }}"
+
+- name: adding ansible user to sudoers
+  lineinfile:
+    dest: /etc/sudoers.d/ansible
+    state: present
+    create: yes
+    line: 'ansible ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'

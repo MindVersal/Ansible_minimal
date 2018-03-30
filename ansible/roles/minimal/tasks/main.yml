@@ -1,5 +1,8 @@
 ---
 
+- name: Step 00. Create_ansible_user.yml
+  include_tasks: create_ansible_user.yml
+
 - name: Step 01. Update system
   include_tasks: update_system.yml
 
@@ -9,21 +12,11 @@
 - name: Step 03. Install tools
   include_tasks: install_tools.yml
 
-- name: Step 04. Disable IPV6
-  include_tasks: disable_ipv6.yml
-
-- name: Step 05. Disable SELinux
-  include_tasks: disable_selinux.yml
-
-- name: Step 06. Enable Iptables
-  include_tasks: enable_iptables.yml
-
-- name: Step 08. Set synchronize time
+- name: Step 04. Set synchronize time
   include_tasks: set_synchronize_time.yml
 
-- name: Step 09. Install fail2ban
-  include_tasks: install_fail2ban.yml
-
-- name: Step 10. Update system
+- name: Step 05. Update system
   include_tasks: update_system.yml
 
+#- name: Step 06. Reboot system
+#  include_tasks: reboot_system.yml

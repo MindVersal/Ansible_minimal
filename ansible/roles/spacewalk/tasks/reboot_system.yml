@@ -1,0 +1,4 @@
+---
+
+- name: Reboot now
+  shell: nohup bash -c "sleep 2s && reboot" &

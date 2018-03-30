@@ -4,11 +4,9 @@
 export IPT="iptables"
 
 # Интерфейс который смотрит в интернет
-export WAN=eth0
-export WAN_IP={{ ansible_eth0.ipv4.address }}
-export LAN=eth1
-export LAN_IP={{ ansible_eth1.ipv4.address }}
-export LAN_IP_RANGE={{ ansible_eth1.ipv4.network }}/24
+export WAN={{ ansible_interfaces[0] }}
+export LAN={{ ansible_interfaces[1] }}
+export LAN_IP_RANGE={{ ansible_eth1.ipv4.network if ( "eth1" in ansible_interfaces ) else ansible_ens192.ipv4.network }}/24
 
 # Очистка всех цепочек iptables
 $IPT -F

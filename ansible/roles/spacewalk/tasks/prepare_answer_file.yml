@@ -1,0 +1,14 @@
+---
+
+- name: Include vars
+  include_vars: passwords.yml
+
+- name: Copy answer file
+  template:
+    src: '{{ item }}.j2'
+    dest: '/{{ item }}'
+    owner: root
+    group: root
+    mode: 0660
+  with_items:
+    - usr/etc/spacewalk_conf_init

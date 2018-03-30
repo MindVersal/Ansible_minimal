@@ -1,0 +1,15 @@
+---
+
+- name: Install Spacewalk repo
+  yum:
+    name: 'http://yum.spacewalkproject.org/latest/RHEL/7/x86_64/spacewalk-repo-2.7-2.el7.noarch.rpm'
+    state: present
+    update_cache: yes
+
+- name: Install Additional repo
+  copy:
+    src: '{{ item }}'
+    dest: '/{{ item }}'
+  with_items:
+      - etc/yum.repos.d/group_spacewalkproject-java-packages-epel-7.repo
+

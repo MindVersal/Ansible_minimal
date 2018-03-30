@@ -1,0 +1,7 @@
+---
+
+- name: Step 01. Install fail2ban
+  include_tasks: install_fail2ban.yml
+
+- name: Step 02. Reboot system
+  include_tasks: reboot_system.yml

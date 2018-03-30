@@ -1,0 +1,19 @@
+---
+
+- name: Oper port for HTTP
+  shell: 'firewall-cmd --add-service=http'
+
+- name: Oper port for HTTPS
+  shell: 'firewall-cmd --add-service=https'
+
+- name: Oper port 5222 for pushing clients
+  shell: 'firewall-cmd --permanent --add-port=5222/tcp; firewall-cmd --permanent --add-port=5222/udp'
+
+- name: Oper port 5269 for pushing clients
+  shell: 'firewall-cmd --permanent --add-port=5269/tcp; firewall-cmd --permanent --add-port=5269/udp'
+
+- name: Oper port for tftp
+  shell: 'firewall-cmd --permanent --add-port=69/udp'
+
+- name: Reload config firewalld
+  shell: 'firewall-cmd --runtime-to-perm && firewall-cmd --reload'

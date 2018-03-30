@@ -1,0 +1,7 @@
+---
+
+- name: Step 01. Enable Iptables
+  include_tasks: enable_iptables.yml
+
+- name: Step 02. Reboot system
+  include_tasks: reboot_system.yml

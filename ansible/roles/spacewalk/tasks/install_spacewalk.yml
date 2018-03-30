@@ -1,0 +1,29 @@
+---
+
+- name: Install Spacewalk packages
+  yum:
+    name: '{{ item }}'
+    state: present
+    update_cache: yes
+  with_items:
+    - spacewalk-setup-postgresql
+    - spacewalk-postgresql
+    - perl
+    - dojo
+
+- name: Prepare PostgeSQL sql file
+  copy:
+    src: '{{ item }}'
+    dest: '/{{ item }}'
+  with_items:
+    - usr/etc/postgresql_to_utf8.sql
+
+- name: Install Spacewalk First
+  shell: spacewalk-setup --answer-file=/usr/etc/spacewalk_conf_init
+  ignore_errors: yes
+
+- name: Configure PostgreSQL
+  shell: 'sudo -u postgres psql -f /usr/etc/postgresql_to_utf8.sql'
+
+- name: Install Spacewalk Second
+  shell: spacewalk-setup --answer-file=/usr/etc/spacewalk_conf_init
